@@ -36,9 +36,22 @@ export class Compra implements OnInit {
   }
 
   private recargar() {
-    this.articulos = this.articuloService.getArticulos();
-    this.carrito = this.articuloService.getCarrito();
-    this.calcularTotal();
+    this.loading = true;
+    this.articuloService.getTop10$().subscribe({
+      next: (arts) => {
+        this.articulos = arts;                               // <-- vienen del backend
+        this.carrito = this.articuloService.getCarrito();
+        this.calcularTotal();
+        this.loading = false;
+      },
+      error: () => {
+        // (opcional) fallback si el backend falla:
+        this.articulos = this.articuloService.getArticulos(); // mock
+        this.carrito = this.articuloService.getCarrito();
+        this.calcularTotal();
+        this.loading = false;
+      }
+    });
   }
 
   agregarAlCarrito(articulo: Articulo): void {
