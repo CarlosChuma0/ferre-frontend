@@ -1,0 +1,47 @@
+<main class="d-flex justify-content-center py-5">
+  <div class="form shadow-sm p-4 rounded bg-white border" style="width:100%; max-width:500px;">
+    <h3 class="text-center mb-4 fw-semibold">Crear cuenta</h3>
+    <div class="input mb-3">
+      <label class="form-label">Nombre Completo</label>
+      <input [(ngModel)]="nombre" placeholder="Nombre Completo" class="form-control">
+    </div>
+    <div class="input mb-3">
+      <label class="form-label">Username</label>
+      <input [(ngModel)]="username" placeholder="Nombre de usuario" class="form-control">
+    </div>
+    <div class="input mb-3">
+      <label class="form-label">Email</label>
+      <input [(ngModel)]="email" type="email" placeholder="ejemplo@gmail.com" class="form-control">
+    </div>
+    <div class="input mb-3">
+      <label class="form-label">Teléfono</label>
+      <input [(ngModel)]="telefono" type="text" placeholder="388-..." class="form-control" required>
+    </div>
+    <div class="input mb-3">
+      <label class="form-label">DNI</label>
+      <input [(ngModel)]="dni" type="text" class="form-control" required>
+    </div>
+    <div class="input mb-3">
+      <label class="form-label">CUIT/CUIL</label>
+      <input [(ngModel)]="cuit" type="text" placeholder="20-XXXXXXXX-X" class="form-control" required>
+    </div>
+    <div class="input mb-3">
+      <label class="form-label">Dirección</label>
+      <input [(ngModel)]="direccion" type="text" class="form-control" required>
+    </div>
+    <div class="input mb-4">
+      <label class="form-label">Categoría Fiscal</label>
+      <input [(ngModel)]="categoriaFiscal" type="text" placeholder="Monotributo / Responsable Inscripto" class="form-control" required>
+    </div>
+    <div class="input mb-4">
+      <label class="form-label">Contraseña</label>
+      <input [(ngModel)]="password" type="password" placeholder="******" class="form-control">
+    </div>
+    <button (click)="registrarUsuario()" class="btn btn-primary w-100" [disabled]="loading" >{{ loading ? 'Registrando…' : 'Registrarme' }}</button>
+    <p class="text-center small mt-3 mb-0 text-success" *ngIf="msgRegistro">{{ msgRegistro }}</p>
+    <p class="text-center small mt-3 mb-0">
+      ¿Ya tenés cuenta?
+      <a routerLink="/login" class="text-primary text-decoration-none">Iniciá sesión</a>
+    </p>
+  </div>
+</main>

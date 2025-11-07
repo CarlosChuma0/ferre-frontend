@@ -8,8 +8,13 @@
 
 # Node
 /node_modules
-npm-debug.log
-yarn-error.log
+dist
+.tmp
+coverage
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
 
 # IDEs and editors
 .idea/
@@ -41,3 +46,4 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+

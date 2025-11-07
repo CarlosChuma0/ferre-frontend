@@ -1,0 +1,11 @@
+.btn.btn-primary {
+  background-color: var(--primary, #007bff);
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn.btn-primary:hover {
+  background-color: #0069d9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}

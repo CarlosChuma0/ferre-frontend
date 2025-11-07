@@ -1,0 +1,56 @@
+<main class="container p-5" *ngIf="userLoggedIn; else noLogin">
+  <h1 class="mb-4 fw-semibold">Compra</h1>
+  <div class="shop-layout">
+    <section class="product-list">
+      <div class="product-item" *ngFor="let articulo of articulos">
+        <img src="assets/img/prueba.jpg" [alt]="articulo.nombre">
+        <div class="info">
+          <h4>{{ articulo.nombre }}</h4>
+          <p class="small text-muted">{{ articulo.descripcion }}</p>
+          <strong>${{ articulo.precio }}</strong>
+        </div>
+        <div class="actions">
+          <input
+            type="number"
+            min="1"
+            [(ngModel)]="cantidades[articulo.id]"
+            class="form-control qty-input"
+            placeholder="1"
+          />
+          <button class="btn btn-primary" (click)="agregarAlCarrito(articulo)">
+            Agregar
+          </button>
+        </div>
+      </div>
+    </section>
+    <aside class="cart">
+      <h3 class="fw-semibold mb-3">Tu carrito</h3>
+      <ul class="cart-list" *ngIf="carrito.length > 0; else vacio">
+        <li *ngFor="let item of carrito">
+          <span>{{ item.articulo.nombre }} ×{{ item.cantidad }}</span>
+          <span class="remove" (click)="quitarDelCarrito(item.articulo.id)">✕</span>
+        </li>
+      </ul>
+      <ng-template #vacio>
+        <p class="text-muted small">Tu carrito está vacío.</p>
+      </ng-template>
+      <div class="total mt-3">
+        <span>Total:</span>
+        <strong>${{ total }}</strong>
+      </div>
+       <button
+        (click)="finalizarCompra()"
+        class="btn success w-100 mt-3 finalizar-btn"
+        [disabled]="carrito.length === 0"
+      >
+        Finalizar compra
+      </button>
+    </aside>
+  </div>
+</main>
+<ng-template #noLogin>
+  <div class="text-center py-5">
+    <p class="fw-semibold">Debés iniciar sesión para acceder a la sección de compras.</p>
+    <a routerLink="/login" class="btn btn-primary">Iniciar sesión</a>
+  </div>
+</ng-template>
