@@ -1,47 +1,91 @@
-<main class="d-flex justify-content-center py-5">
-  <div class="form shadow-sm p-4 rounded bg-white border" style="width:100%; max-width:500px;">
-    <h3 class="text-center mb-4 fw-semibold">Crear cuenta</h3>
-    <div class="input mb-3">
-      <label class="form-label">Nombre Completo</label>
-      <input [(ngModel)]="nombre" placeholder="Nombre Completo" class="form-control">
-    </div>
-    <div class="input mb-3">
-      <label class="form-label">Username</label>
-      <input [(ngModel)]="username" placeholder="Nombre de usuario" class="form-control">
-    </div>
-    <div class="input mb-3">
-      <label class="form-label">Email</label>
-      <input [(ngModel)]="email" type="email" placeholder="ejemplo@gmail.com" class="form-control">
-    </div>
-    <div class="input mb-3">
-      <label class="form-label">Teléfono</label>
-      <input [(ngModel)]="telefono" type="text" placeholder="388-..." class="form-control" required>
-    </div>
-    <div class="input mb-3">
-      <label class="form-label">DNI</label>
-      <input [(ngModel)]="dni" type="text" class="form-control" required>
-    </div>
-    <div class="input mb-3">
-      <label class="form-label">CUIT/CUIL</label>
-      <input [(ngModel)]="cuit" type="text" placeholder="20-XXXXXXXX-X" class="form-control" required>
-    </div>
-    <div class="input mb-3">
-      <label class="form-label">Dirección</label>
-      <input [(ngModel)]="direccion" type="text" class="form-control" required>
-    </div>
-    <div class="input mb-4">
-      <label class="form-label">Categoría Fiscal</label>
-      <input [(ngModel)]="categoriaFiscal" type="text" placeholder="Monotributo / Responsable Inscripto" class="form-control" required>
-    </div>
-    <div class="input mb-4">
-      <label class="form-label">Contraseña</label>
-      <input [(ngModel)]="password" type="password" placeholder="******" class="form-control">
-    </div>
-    <button (click)="registrarUsuario()" class="btn btn-primary w-100" [disabled]="loading" >{{ loading ? 'Registrando…' : 'Registrarme' }}</button>
-    <p class="text-center small mt-3 mb-0 text-success" *ngIf="msgRegistro">{{ msgRegistro }}</p>
-    <p class="text-center small mt-3 mb-0">
-      ¿Ya tenés cuenta?
-      <a routerLink="/login" class="text-primary text-decoration-none">Iniciá sesión</a>
-    </p>
+<main class="d-flex justify-content-center align-items-center py-5">
+  <div class="form shadow-sm p-4 p-md-5 rounded bg-white border-0 register-card">
+    <h3 class="text-center mb-4 fw-bold text-primary">Crear cuenta</h3>
+    <form #f="ngForm">
+      <div class="input mb-3">
+        <label class="form-label fw-semibold">Nombre Completo</label>
+        <input [(ngModel)]="nombre" name="nombre" #nombreModel="ngModel" placeholder="Juan Pérez" class="form-control"
+          required minlength="5" />
+        <div class="text-danger small mt-1" *ngIf="nombreModel.invalid && nombreModel.touched">
+          Ingresá al menos 5 caracteres
+        </div>
+      </div>
+      <div class="input mb-3">
+        <label class="form-label fw-semibold">Nombre de usuario</label>
+        <input [(ngModel)]="username" name="username" #userModel="ngModel" placeholder="juanperez89"
+          class="form-control" required minlength="3" />
+        <div class="text-danger small mt-1" *ngIf="userModel.invalid && userModel.touched">
+          Ingresá al menos 3 caracteres
+        </div>
+      </div>
+      <div class="input mb-3">
+        <label class="form-label fw-semibold">Email</label>
+        <input [(ngModel)]="email" name="email" #emailModel="ngModel" type="email" placeholder="usuario@correo.com"
+          class="form-control" required pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" />
+        <div class="text-danger small mt-1" *ngIf="emailModel.invalid && emailModel.touched">
+          Ingresá un email válido
+        </div>
+      </div>
+      <div class="input mb-3">
+        <label class="form-label fw-semibold">Teléfono</label>
+        <input [(ngModel)]="telefono" name="telefono" #telModel="ngModel" type="text" placeholder="3881234567"
+          class="form-control" required minlength="7" />
+        <div class="text-danger small mt-1" *ngIf="telModel.invalid && telModel.touched">
+          Ingresá al menos 7 caracteres
+        </div>
+      </div>
+      <div class="input mb-3">
+        <label class="form-label fw-semibold">DNI</label>
+        <input [(ngModel)]="dni" name="dni" #dniModel="ngModel" type="text" placeholder="12345678" class="form-control"
+          required minlength="7" />
+        <div class="text-danger small mt-1" *ngIf="dniModel.invalid && dniModel.touched">
+          Ingresá al menos 7 caracteres
+        </div>
+      </div>
+      <div class="input mb-3">
+        <label class="form-label fw-semibold">CUIT/CUIL</label>
+        <input [(ngModel)]="cuit" name="cuit" #cuitModel="ngModel" type="text" placeholder="20XXXXXXXXX"
+          class="form-control" required minlength="11" />
+        <div class="text-danger small mt-1" *ngIf="cuitModel.invalid && cuitModel.touched">
+          Ingresá al menos 11 caracteres
+        </div>
+      </div>
+      <div class="input mb-3">
+        <label class="form-label fw-semibold">Dirección</label>
+        <input [(ngModel)]="direccion" name="direccion" #dirModel="ngModel" type="text"
+          placeholder="Av. Siempre Viva 123, Ciudad" class="form-control" required minlength="5" />
+        <div class="text-danger small mt-1" *ngIf="dirModel.invalid && dirModel.touched">
+          Ingresá al menos 5 caracteres
+        </div>
+      </div>
+      <div class="input mb-4">
+        <label class="form-label fw-semibold">Categoría Fiscal</label>
+        <select [(ngModel)]="categoriaFiscal" name="categoriaFiscal" #catModel="ngModel" class="form-select" required>
+          <option value="" disabled selected>Seleccioná una opción</option>
+          <option value="Monotributo">Monotributo</option>
+          <option value="Responsable Inscripto">Responsable Inscripto</option>
+        </select>
+        <div class="text-danger small mt-1" *ngIf="catModel.invalid && catModel.touched">
+          Seleccioná una categoría fiscal
+        </div>
+      </div>
+      <div class="input mb-4">
+        <label class="form-label fw-semibold">Contraseña</label>
+        <input [(ngModel)]="password" name="password" #passModel="ngModel" type="password"
+          placeholder="Contraseña segura" class="form-control" required minlength="5" />
+        <div class="text-danger small mt-1" *ngIf="passModel.invalid && passModel.touched">
+          La contraseña debe tener al menos 5 caracteres
+        </div>
+      </div>
+      <button (click)="registrarUsuario()" class="btn btn-primary w-100 py-2 fw-semibold shadow-sm rounded-pill"
+        [disabled]="loading || f.invalid">
+        {{ loading ? 'Registrando…' : 'Registrarme' }}
+      </button>
+      <p class="text-center small mt-3 mb-0 text-success" *ngIf="msgRegistro">{{ msgRegistro }}</p>
+      <p class="text-center small mt-3 mb-0">
+        ¿Ya tenés cuenta?
+        <a routerLink="/login" class="text-primary text-decoration-none fw-semibold">Iniciá sesión</a>
+      </p>
+    </form>
   </div>
 </main>

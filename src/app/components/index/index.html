@@ -1,28 +1,54 @@
 <main class="container py-4">
+  <section class="text-center mb-4">
+    <h2 class="fw-bold text-primary">¡Descubrí nuestras herramientas destacadas!</h2>
+    <p class="text-muted lead">Calidad, precio y buena onda en cada producto. No te pierdas nuestras ofertas.</p>
+  </section>
   <section class="mb-5">
-    <div id="carouselDestacadas" class="carousel slide shadow-sm rounded-4 overflow-hidden" data-bs-ride="carousel">
-      <div class="carousel-inner" >
-        <div class="carousel-item active text-center bg-white p-4" *ngFor="let art of articulos">
-          <img src="assets/img/prueba.jpg" class="d-block mx-auto rounded-3 mb-3" style="max-height: 260px;" alt="{{ art.nombre }}">
-          <h4 class="fw-semibold mb-1">{{ art.nombre }}</h4>
-          <p class="price text-primary fw-bold mb-0">{{ art.descripcion }}</p>
-          <p class="price text-primary fw-bold mb-0">${{ art.precio }}</p>
+    <div id="carouselDestacadas" class="carousel slide shadow-sm rounded-4 overflow-hidden bg-white"
+      data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item text-center p-4" *ngFor="let art of articulos; let i = index"
+          [ngClass]="{ active: i === 0 }">
+          <a routerLink="/compra" class="d-block position-relative text-decoration-none text-dark">
+            <span class="badge bg-success position-absolute top-0 start-0 m-2">Nuevo</span>
+            <img src="assets/img/prueba.jpg" class="d-block mx-auto rounded-3 mb-3 img-fluid carousel-img"
+              style="max-height: 260px;" alt="{{ art.nombre }}">
+            <h4 class="fw-semibold mb-1 text-dark">{{ art.nombre }}</h4>
+            <p class="text-muted mb-1">{{ art.descripcion }}</p>
+            <p class="price text-primary fw-bold mb-0">${{ art.precio }}</p>
+          </a>
         </div>
-      
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselDestacadas" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
+        <span class="carousel-control-prev-icon custom-arrow"></span>
       </button>
       <button class="carousel-control-next" type="button" data-bs-target="#carouselDestacadas" data-bs-slide="next">
-        <span class="carousel-control-next-icon"></span>
+        <span class="carousel-control-next-icon custom-arrow"></span>
       </button>
     </div>
   </section>
-
-  <section class="banner p-4 mb-4 text-center rounded-4 shadow-sm bg-white">
-    <h1 class="fw-bold mb-3">Herramientas para hacer y crear</h1>
-    <p class="lead">Somos una ferretería de barrio con alma tech. Calidad, precio y buena onda.</p>
-    <p class="notice my-3">Envíos en 24–48 h · 6 cuotas sin interés · Garantía oficial</p>
-    <a routerLink="/compra" class="btn btn-primary btn-lg rounded-pill mt-2">Ver catálogo</a>
+  <section class="banner p-5 mb-4 text-center rounded-4 shadow-sm bg-white position-relative overflow-hidden">
+    <h1 class="fw-bold mb-3 text-primary">Herramientas para hacer y crear</h1>
+    <p class="lead mb-2 text-secondary">Somos una ferretería de barrio con alma tech. Calidad, precio y buena onda.</p>
+    <p class="notice my-3 text-muted">Envíos en 24–48 h · 6 cuotas sin interés · Garantía oficial</p>
+    <a routerLink="/compra" class="btn btn-primary btn-lg rounded-pill mt-2 shadow-sm px-4 py-2 pulse-hover">
+      Ver catálogo
+    </a>
+  </section>
+  <section class="ofertas-semana container py-4">
+    <h2 class="fw-bold mb-4 text-primary">Ofertas de la semana</h2>
+    <div class="row g-3">
+      <div class="col-md-4" *ngFor="let art of articulos | slice:0:3">
+        <a routerLink="/compra" class="text-decoration-none text-dark">
+          <div class="offer-card position-relative bg-white shadow-sm rounded-4 p-3 h-100">
+            <span class="badge bg-success position-absolute top-0 end-0 m-2">-10%</span>
+            <img src="{{ 'assets/img/prueba.jpg' }}" alt="{{ art.nombre }}" class="img-fluid rounded-3 offer-img">
+            <h5 class="fw-semibold">{{ art.nombre }}</h5>
+            <p class="text-muted mb-1">{{ art.descripcion }}</p>
+            <p class="price fw-bold text-primary mb-0">${{ art.precio }}</p>
+          </div>
+        </a>
+      </div>
+    </div>
   </section>
 </main>

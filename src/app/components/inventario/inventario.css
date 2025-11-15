@@ -1,0 +1,32 @@
+.row-hover {
+  transition: background-color 0.25s ease;
+}
+
+.row-hover:hover {
+  background-color: #f8f9fa;
+}
+
+.form-control {
+  border-radius: 12px;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid #ced4da;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+}
+
+.action-btn {
+  transition: all 0.2s ease-in-out;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.table {
+  min-width: 500px;
+}

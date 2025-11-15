@@ -1,0 +1,114 @@
+.navbar {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand {
+  font-size: 1.3rem;
+  transition: color 0.2s ease;
+}
+
+.navbar-brand:hover {
+  color: #0d6efd;
+}
+
+.nav-link {
+  color: #374151 !important;
+  transition: color 0.2s, transform 0.2s;
+}
+
+.nav-link:hover {
+  color: #0d6efd !important;
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary:hover {
+  background-color: #0d6efd;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.dropdown-menu {
+  border-radius: 10px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav-animated-item {
+  position: relative;
+  height: 40px;
+  width: 60px;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-animated-item .nav-icon {
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  font-size: 1.3rem;
+}
+
+.nav-animated-item .nav-text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(40%);
+  font-size: 0.8rem;
+  opacity: 0;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+@media (min-width: 992px) {
+  .nav-animated-item:hover .nav-icon {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  .nav-animated-item:hover .nav-text {
+    transform: translateY(-50%);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 991px) {
+  .nav-animated-item {
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    gap: 6px;
+    overflow: visible;
+  }
+
+  .nav-animated-item .nav-icon {
+    display: none !important;
+  }
+
+  .nav-animated-item .nav-text {
+    position: static;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.nav-animated-item.active {
+  background-color: rgba(13, 110, 253, 0.08);
+  border-radius: 8px;
+}
+
+.nav-animated-item.active .nav-icon,
+.nav-animated-item.active .nav-text {
+  color: #0d6efd !important;
+}

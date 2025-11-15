@@ -1,9 +1,8 @@
 <main class="container py-5">
-  <div class="bg-white shadow-sm border rounded-4 p-4">
-    <h1 class="mb-1 fw-semibold">Inventario</h1>
+  <div class="bg-white shadow-sm border-0 rounded-4 p-4">
+    <h1 class="mb-1 fw-bold text-primary">Inventario</h1>
     <p class="small text-muted mb-4">Sección pensada para administradores.</p>
-
-    <div class="table-responsive">
+    <div class="table-responsive rounded-3 overflow-auto">
       <table class="table align-middle mb-0">
         <thead class="table-light">
           <tr>
@@ -15,20 +14,22 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let art of articulos">
-            <td>{{ art.id }}</td>
-            <td>{{ art.nombre }}</td>
-            <td>{{ art.precio | currency:'ARS' }}</td>
+          <tr *ngFor="let art of articulos" class="row-hover align-middle">
+            <td class="fw-semibold text-secondary">{{ art.id }}</td>
+            <td class="fw-semibold">{{ art.nombre }}</td>
+            <td class="text-primary fw-bold">${{ art.precio }}</td>
             <td>
-              <input
+              <input 
                 type="number"
-                class="form-control form-control-sm"
+                class="form-control form-control-sm rounded-pill"
                 [(ngModel)]="art.stockEditable"
-                style="max-width:110px"
+                style="max-width:120px"
               />
             </td>
             <td class="text-center">
-              <button class="btn btn-sm btn-primary" (click)="guardarCambios(art)">
+              <button 
+                class="btn btn-sm btn-primary px-3 py-1 rounded-pill fw-semibold shadow-sm action-btn"
+                (click)="guardarCambios(art)">
                 <i class="bi bi-save"></i> Guardar
               </button>
             </td>
@@ -39,8 +40,8 @@
   </div>
 </main>
 <ng-template #noLogin>
-  <div class="text-center py-5">
-    <p class="fw-semibold">Debés iniciar sesión como administrador para acceder al inventario.</p>
-    <a routerLink="/login" class="btn btn-primary">Iniciar sesión</a>
+  <div class="text-center py-5 bg-white rounded-4 shadow-sm mx-3">
+    <p class="fw-semibold mb-3">Debés iniciar sesión como administrador para acceder al inventario.</p>
+    <a routerLink="/login" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">Iniciar sesión</a>
   </div>
 </ng-template>

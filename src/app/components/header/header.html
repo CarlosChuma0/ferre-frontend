@@ -1,29 +1,57 @@
-<header class="header shadow-sm">
-  <nav class="navbar navbar-expand-lg bg-white border-bottom">
+<header class="header shadow-sm sticky-top bg-white">
+  <nav class="navbar navbar-expand-lg py-3">
     <div class="container">
-      <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
-        <span class="logo me-2"></span> Ferretería Ficticia
+      <a class="navbar-brand fw-bold d-flex align-items-center text-primary" routerLink="/">
+        <i class="bi bi-tools me-2 fs-4"></i>Ferretería Ficticia
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="bi bi-list fs-2 text-primary"></i>
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav gap-2">
-          <li class="nav-item"><a class="nav-link active" routerLink="/">Home</a></li>
-          <li *ngIf="isAdmin()" class="nav-item">
-            <a class="nav-link" routerLink="/inventario">Inventario</a>
+        <ul class="navbar-nav align-items-center gap-3">
+          <li class="nav-item">
+            <a class="nav-link fw-semibold nav-animated-item" routerLink="/" [ngClass]="{'active': isActive('/')}"
+              (mouseenter)="onMouseEnter('/')" (mouseleave)="onMouseLeave()">
+              <i class="bi bi-house-door nav-icon"></i>
+              <span class="nav-text">Inicio</span>
+            </a>
           </li>
-          <li class="nav-item"><a class="nav-link" routerLink="/compra">Compra</a></li>
+          <li *ngIf="isAdmin()" class="nav-item">
+            <a class="nav-link fw-semibold nav-animated-item" routerLink="/inventario"
+              [ngClass]="{'active': isActive('/inventario')}" (mouseenter)="onMouseEnter('/inventario')"
+              (mouseleave)="onMouseLeave()">
+              <i class="bi bi-box-seam nav-icon"></i>
+              <span class="nav-text">Inventario</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fw-semibold nav-animated-item" routerLink="/compra"
+              [ngClass]="{'active': isActive('/compra')}" (mouseenter)="onMouseEnter('/compra')"
+              (mouseleave)="onMouseLeave()">
+              <i class="bi bi-cart3 nav-icon"></i>
+              <span class="nav-text">Compras</span>
+            </a>
+          </li>
           <li *ngIf="!userLoggedIn()" class="nav-item">
-            <a class="nav-link" routerLink="/registro">Registro</a>
+            <a class="btn btn-outline-primary px-3 d-flex align-items-center" routerLink="/registro">
+              <i class="bi bi-person-plus me-1 d-none d-lg-inline"></i>
+              <span>Registrate</span>
+            </a>
           </li>
           <li *ngIf="userLoggedIn()" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-              {{ userLogged() }}
+            <a class="nav-link dropdown-toggle fw-semibold d-flex align-items-center" href="#" role="button"
+              data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle me-2 fs-5 d-none d-lg-inline"></i>
+              <span>{{ userLogged() }}</span>
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" (click)="logOut()">Cerrar sesión</a></li>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+              <li>
+                <button class="dropdown-item text-danger fw-semibold d-flex align-items-center" (click)="logOut()">
+                  <i class="bi bi-box-arrow-right me-1"></i>
+                  <span>Cerrar sesión</span>
+                </button>
+              </li>
             </ul>
           </li>
         </ul>

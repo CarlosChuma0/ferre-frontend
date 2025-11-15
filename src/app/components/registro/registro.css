@@ -1,0 +1,30 @@
+.register-card {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 18px;
+  background-color: #ffffff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.register-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.btn.btn-primary {
+  background-color: var(--primary, #0d6efd);
+  border: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn.btn-primary:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 576px) {
+  .register-card {
+    padding: 2rem 1.5rem !important;
+  }
+}

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterLink } from '@angular/router';
 import { UsuarioService } from '../../services/usuario-service';
 import { ArticuloService } from '../../services/articulo-service';
 
@@ -13,14 +13,43 @@ import { ArticuloService } from '../../services/articulo-service';
 })
 export class Header {
   returnUrl: string = '/';
+  currentRoute: string = '';
+  hoverRoute: string | null = null;
 
   constructor(
     private usuarioService: UsuarioService,
-    private articuloService: ArticuloService, 
+    private articuloService: ArticuloService,
     private router: Router,
     private route: ActivatedRoute
   ) {
     this.returnUrl = this.route.snapshot?.queryParams?.['returnUrl'] || '/';
+    router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        this.currentRoute = event.urlAfterRedirects;
+      }
+    });
+  }
+
+  isActive(route: string): boolean {
+    if (this.hoverRoute === route) return true;
+
+    if (this.hoverRoute === null) {
+      if (route === '/') {
+        return this.currentRoute === '/';
+      } else {
+        return this.currentRoute.startsWith(route);
+      }
+    }
+
+    return false;
+  }
+
+  onMouseEnter(route: string) {
+    this.hoverRoute = route;
+  }
+
+  onMouseLeave() {
+    this.hoverRoute = null;
   }
 
   userLoggedIn(): boolean {

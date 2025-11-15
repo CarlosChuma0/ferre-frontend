@@ -1,19 +1,30 @@
-<main class="d-flex justify-content-center py-5">
-  <div class="form shadow-sm p-4 rounded bg-white border" style="width:100%; max-width:500px;">
-    <h3 class="text-center mb-4 fw-semibold">Iniciar sesión</h3>
+<main class="d-flex justify-content-center align-items-center py-5">
+  <div class="form shadow-sm p-4 p-md-5 rounded bg-white border-0 register-card">
+    <h3 class="text-center mb-4 fw-bold text-primary">Iniciar sesión</h3>
     <div class="input mb-3">
-      <label class="form-label">Email</label>
-      <input [(ngModel)]="email" id="log-email" type="email" placeholder="ejemplo@gmail.com" class="form-control">
+      <label class="form-label fw-semibold">Email</label>
+      <input [(ngModel)]="email" #emailModel="ngModel" type="email" placeholder="usuario@correo.com"
+        class="form-control" required />
+      <div class="text-danger small mt-1" *ngIf="emailModel.invalid && emailModel.touched">
+        Ingresá un email válido
+      </div>
     </div>
     <div class="input mb-4">
-      <label class="form-label">Contraseña</label>
-      <input [(ngModel)]="password" id="log-pass" type="password" placeholder="******" class="form-control">
+      <label class="form-label fw-semibold">Contraseña</label>
+      <input [(ngModel)]="password" #passModel="ngModel" type="password" placeholder="******" class="form-control"
+        required minlength="5" />
+      <div class="text-danger small mt-1" *ngIf="passModel.invalid && passModel.touched">
+        La contraseña debe tener al menos 5 caracteres
+      </div>
     </div>
-    <button (click)="logearUsuario()" class="btn btn-primary w-100" id="btn-login">Entrar</button>
-    <p *ngIf="msglogin" class="text-danger text-center mt-2">{{ msglogin }}</p>
+    <button (click)="logearUsuario()" [disabled]="!email || !password"
+      class="btn btn-primary w-100 py-2 fw-semibold shadow-sm rounded-pill">
+      Entrar
+    </button>
+    <p *ngIf="msglogin" class="text-danger text-center mt-3 small mb-0 fw-semibold">{{ msglogin }}</p>
     <p class="text-center small mt-3 mb-0">
       ¿No tenés cuenta?
-      <a routerLink="/registro" class="text-primary text-decoration-none">Registrate</a>
+      <a routerLink="/registro" class="text-primary text-decoration-none fw-semibold">Registrate</a>
     </p>
   </div>
 </main>
