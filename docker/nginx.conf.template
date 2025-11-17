@@ -1,6 +1,13 @@
+limit_req_zone $binary_remote_addr zone=one:10m rate=10r/s;
+
 server {
-  listen 80;
+  listen 443 ssl;
   server_name _;
+
+  ssl_certificate /etc/ssl/nginx/fullchain.pem;
+  ssl_certificate_key /etc/ssl/nginx/privkey.pem;
+
+  limit_req zone=one burst=20 nodelay;
 
   root /usr/share/nginx/html;
   index index.html;
