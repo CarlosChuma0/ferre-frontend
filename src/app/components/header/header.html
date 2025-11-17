@@ -1,7 +1,7 @@
 <header class="header shadow-sm sticky-top bg-white">
   <nav class="navbar navbar-expand-lg py-3">
     <div class="container">
-      <a class="navbar-brand fw-bold d-flex align-items-center text-primary" routerLink="/">
+      <a class="navbar-brand fw-bold d-flex align-items-center" routerLink="/">
         <i class="bi bi-tools me-2 fs-4"></i>Ferretería Ficticia
       </a>
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -34,9 +34,9 @@
             </a>
           </li>
           <li *ngIf="!userLoggedIn()" class="nav-item">
-            <a class="btn btn-outline-primary px-3 d-flex align-items-center" routerLink="/registro">
-              <i class="bi bi-person-plus me-1 d-none d-lg-inline"></i>
-              <span>Registrate</span>
+            <a class="btn btn-outline-primary px-3 d-flex align-items-center" routerLink="/login">
+              <i class="bi bi-box-arrow-in-right me-1 d-none d-lg-inline"></i>
+              <span>Iniciar sesión</span>
             </a>
           </li>
           <li *ngIf="userLoggedIn()" class="nav-item dropdown">

@@ -4,8 +4,7 @@
     <p class="text-muted lead">Calidad, precio y buena onda en cada producto. No te pierdas nuestras ofertas.</p>
   </section>
   <section class="mb-5">
-    <div id="carouselDestacadas" class="carousel slide shadow-sm rounded-4 overflow-hidden bg-white"
-      data-bs-ride="carousel">
+    <div id="carouselDestacadas" class="carousel slide shadow-sm rounded-4 overflow-hidden section-bg" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item text-center p-4" *ngFor="let art of articulos; let i = index"
           [ngClass]="{ active: i === 0 }">
@@ -27,7 +26,7 @@
       </button>
     </div>
   </section>
-  <section class="banner p-5 mb-4 text-center rounded-4 shadow-sm bg-white position-relative overflow-hidden">
+  <section class="banner p-5 mb-4 text-center section-bg position-relative overflow-hidden">
     <h1 class="fw-bold mb-3 text-primary">Herramientas para hacer y crear</h1>
     <p class="lead mb-2 text-secondary">Somos una ferretería de barrio con alma tech. Calidad, precio y buena onda.</p>
     <p class="notice my-3 text-muted">Envíos en 24–48 h · 6 cuotas sin interés · Garantía oficial</p>
@@ -40,7 +39,7 @@
     <div class="row g-3">
       <div class="col-md-4" *ngFor="let art of articulos | slice:0:3">
         <a routerLink="/compra" class="text-decoration-none text-dark">
-          <div class="offer-card position-relative bg-white shadow-sm rounded-4 p-3 h-100">
+          <div class="offer-card position-relative section-bg shadow-sm rounded-4 p-3 h-100">
             <span class="badge bg-success position-absolute top-0 end-0 m-2">-10%</span>
             <img src="{{ 'assets/img/prueba.jpg' }}" alt="{{ art.nombre }}" class="img-fluid rounded-3 offer-img">
             <h5 class="fw-semibold">{{ art.nombre }}</h5>

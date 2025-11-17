@@ -51,3 +51,11 @@
     font-size: 1.4rem;
   }
 }
+
+.register-card label,
+.register-card .form-label,
+.register-card p,
+.register-card .text-danger,
+.register-card .text-primary {
+    color: #333333;
+}

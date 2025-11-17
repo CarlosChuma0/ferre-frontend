@@ -1,48 +1,202 @@
-.confirmation-card {
-  max-width: 480px;
-  border-radius: 16px;
-  background-color: #ffffff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+.shop-layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2rem;
+  align-items: start;
 }
 
-.confirmation-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.icon-circle {
+.product-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: #f0f4f8;
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid #d1dbe5;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.product-item:hover {
+  transform: scale(1.01);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.product-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.product-item .info {
+  flex: 1;
+}
+
+.product-item h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #212529;
+}
+
+.product-item p {
+  margin-bottom: 0.3rem;
+  color: #495057;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-input {
   width: 70px;
-  height: 70px;
-  background-color: #e9f7ef;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+}
+
+.add-btn {
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
+  padding: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
-  margin: 0 auto;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  background-color: #0d6efd;
+  border: 1px solid #0d6efd;
+  color: white;
+  transition: 0.2s ease-in-out;
 }
 
-.btn.btn-primary {
-  background-color: var(--primary, #0d6efd);
-  border: none;
-  transition: all 0.2s ease-in-out;
-}
-
-.btn.btn-primary:hover {
+.add-btn:hover {
   background-color: #0b5ed7;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  transform: scale(1.1);
 }
 
-@media (max-width: 576px) {
-  .confirmation-card {
-    padding: 2rem 1.5rem;
+.cart {
+  background: #f0f4f8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid #d1dbe5;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 420px;
+  width: 100%;
+  color: #212529;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.cart-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #d1dbe5;
+  color: #212529;
+}
+
+.cart-list .remove {
+  cursor: pointer;
+  color: #dc3545;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.cart-list .remove:hover {
+  color: #b92c3d;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  color: #212529;
+}
+
+.finalizar-btn {
+  display: inline-block;
+  text-align: center;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: 1px solid #0d6efd;
+  background-color: #0d6efd;
+  color: white;
+  font-weight: 600;
+  transition: 0.25s ease-in-out;
+}
+
+.finalizar-btn:hover:not(:disabled) {
+  background-color: #0b5ed7;
+  border-color: #0b5ed7;
+  transform: scale(1.02);
+}
+
+.finalizar-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .shop-layout {
+    grid-template-columns: 1fr;
   }
 
-  .icon-circle {
-    width: 60px;
-    height: 60px;
-    font-size: 2rem;
+  .cart {
+    margin-top: 2rem;
+    order: 2;
+    max-width: 100%;
   }
+
+  .product-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .product-item img {
+    margin: 0 auto;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255,255,255,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050;
+}
+
+.loading-overlay .spinner {
+  text-align: center;
+}
+
+.bg-color5 {
+  background-color: #f8f9fa;
 }

@@ -1,5 +1,5 @@
 <main class="container p-5" *ngIf="userLoggedIn; else noLogin">
-  <h1 class="mb-4 fw-semibold">Compra</h1>
+  <h1 class="mb-4 fw-semibold text-primary">Compra</h1>
   <div class="shop-layout">
     <section class="product-list">
       <div class="product-item shadow-sm" *ngFor="let articulo of articulos">
@@ -29,12 +29,10 @@
       <ng-template #vacio>
         <p class="text-muted small">Tu carrito está vacío.</p>
       </ng-template>
-
       <div class="total mt-3">
         <span>Total:</span>
         <strong>${{ total }}</strong>
       </div>
-
       <button (click)="finalizarCompra()" class="btn finalizar-btn w-100 mt-3" [disabled]="carrito.length === 0">
         Finalizar compra
       </button>
@@ -50,7 +48,7 @@
   </div>
 </div>
 <ng-template #noLogin>
-  <div class="text-center py-5 bg-white rounded-4 shadow-sm mx-3">
+  <div class="text-center py-5 bg-#e7ffff rounded-4 shadow-sm mx-3">
     <p class="fw-semibold mb-3">Debés iniciar sesión para acceder a la sección de compras.</p>
     <a routerLink="/login" class="btn btn-primary px-4 py-2 rounded-pill shadow-sm">Iniciar sesión</a>
   </div>
